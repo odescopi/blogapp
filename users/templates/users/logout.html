@@ -1,0 +1,24 @@
+{% extends 'entries/../../../entries/templates/base.html' %}
+{% block header %}
+{#    <div class="col-md-8 mt-4">#}
+    <div>
+        <h5><b>Thanks for being a part of this community blog!!!</b></h5>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+{#    </div>#}
+
+{% endblock header %}
+{% block content %}
+
+    <!-- Blog Entries Column -->
+
+    <div class="col-md-8 mt-4">
+        <h4>You have successfully logged out <a href="{% url 'users:login' %}">Login</a> </h4>
+    </div>
+{% endblock content %}

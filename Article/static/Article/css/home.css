@@ -1,0 +1,18 @@
+
+/*!
+ * Start Bootstrap - Blog Home (https://startbootstrap.com/templates/blog-home)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-blog-home/blob/master/LICENSE)
+ */
+body {
+  padding-top: 56px;
+}
+#Footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  height: 2em;
+}
+.col-md-8{
+  margin-top: 20px;
+}

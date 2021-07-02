@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% load comments %}{% block content %}
+<!-- Blog Entries Column -->
+<div class="row">
+    {% for post in object_list %}{% get_comment_count for post as comment_count  %}
+
+    <!-- Blog Post -->
+    <div class="col-sm-4 mt-5">
+        <div class="card mt-4">
+            <div class="card-body mt-3">
+                <h3 class="card-title">{{ post.title }}</h3>
+                {% if post.image %}
+                <img src="{{post.image.url}}" style="border-radius: 10px" alt="noimage" height="280" width="310"> {% endif %}
+                <p class="card-text">{{ post.body|truncatechars:100 }}</p>
+
+                <a href="{{ post.get_absolute_url }}" class="btn btn-primary btn-sm">Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">comments:{% if comment_count %}
+                <span class="text-info mr-2">{{ comment_count }}</span>{% endif %} Posted {{ post.publish }} by
+                <span class="text-info mr-2">{{ post.author }}</span> Edited:
+{#                <span class="text-info mr 2">{{ post.update }}</span>#}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% if is_paginated %}
+<!-- Pagination -->
+<ul class="pagination justify-content-center mb-4">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&larr; Previous Page </a>
+    </li>
+    {% endif %} {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next Page &rarr;</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %} {% endblock content %}

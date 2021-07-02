@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Blog Entries Column -->
+    {% if object.entry_author == request.user %}
+
+        <div class="card-body">
+            <form method="post" >{% csrf_token %}
+                    <p>Are you sure you want to delete: {{ object|truncatechars:20 }} post ?</p>
+{#                <button type="submit" class="btn btn-primary">Post Entry</button>#}
+                <button type="submit" value="confirm" class="btn btn-danger ">Yes</button>
+                <a href="{% url 'Article:blog-home' %}" class="btn btn-primary">NO</a>
+            </form>
+        </div>
+    {% else %}
+        <div>
+            <a href="{% url 'users:login' %}"><h4>Sorry {{ user }}, you can't delete this post!!! Please Login with the correct account</h4></a>
+            <p><br></p>
+        </div>
+    {% endif %}
+{% endblock content %}

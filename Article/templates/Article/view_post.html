@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Blog Entries Column -->
+
+<div class="col-md-8">
+    <a href="{% url 'entries:blog-home' %}">back to home</a>
+
+    <!-- Blog Post -->
+    <div class="card mb-4 mt-4">
+
+        <div class="card-body">
+            <h3 class="card-title">{{ object.entry_title }}</h3>
+            {% if object.entry_image %}
+            <img src="{{object.entry_image.url}}" alt="noimage" height="400" width="450"> {% endif %}
+            <p class="card-text">{{ object.entry_text|linebreaks }}</p>
+            {% if object.entry_author == request.user %}
+            <p><a href="{% url 'entries:update_entry' object.pk %}"><i class="fas fa-edit" style="font-size: 24px;"></i></a></p>
+            <a href="{% url 'entries:delete_entry' object.pk %}"><i class="fas fa-trash" style="font-size: 24px; color: red;" ></i></a></p>
+            {% endif %}
+            <div class="card-footer text-muted">
+                Posted {{ object.entry_date }} by
+                <span class="text-info mr-2">{{ object.entry_author }}</span>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

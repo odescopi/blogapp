@@ -1,0 +1,22 @@
+{% extends 'Article/../../../Article/templates/base.html' %}
+{% block content %}
+<!-- Blog Entries Column -->
+
+    <div class="col-md-8">
+        <div class="card mb-4 mt-4">
+
+            <div class="card-header">
+                Login to your Account
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ object.get_absolute_url }}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+{#                    <input type="submit" value="login"/>#}
+                    <input type="hidden" name="next" value="{{ object.get_absolute_url }}"/>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

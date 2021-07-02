@@ -1,0 +1,123 @@
+{% load bootstrap4 %} {% load static %}{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .footer{
+        position: fixed;
+        color: #0a6ebd;
+    }
+</style>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Blog Home</title>
+    {% bootstrap_css %} {% bootstrap_javascript jquery='full' %}
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'entries/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'entries/css/home.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'Article:blog-home' %}">My Blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                <ul class="navbar-nav ml-auto">
+
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Article:blog-home' %}">Welcome, <span style="text-transform: capitalize;">{{ user.username }}</span> </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Article:create-post' %}">Post Now</a>
+                        </li>
+                        <!-- {# </li>
+                    <li class="nav-item">
+                        {# <a class="nav-link" href="#">{{ user.email }}</a></li> -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:logout' %}">Log Out</a>
+                        </li>
+
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'users:login' %}">Login</a>
+                        </li>
+                        {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+
+    <div class="container">
+
+        {% block title %}{% endblock title %} {% block content %}{% endblock content %}{% block extra-js %}{% endblock extra-js %}
+
+        <!-- Sidebar Widgets Column -->
+        <!--<div class="col-md-4">
+
+                !-- Search Widget --
+            <div class="card my-4">
+                <h5 class="card-header">Logged In Information</h5>
+                <div class="card-body">
+                    <ul>
+                        <li>
+                            <p><strong>Username :
+                            </strong></p>
+                        </li>
+                        <li>
+                            <p><strong>Email : </strong></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>-->
+    </div>
+
+    <!-- /.row -->
+
+
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <div style="display:none">
+        {% block hidden %}{% endblock hidden %}
+    </div>
+    <footer class="py-5 bg-dark">
+        <div class="container" >
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'entries/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'entries/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+</body>
+
+</html>

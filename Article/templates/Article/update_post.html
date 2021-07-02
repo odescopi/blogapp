@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+<!-- Blog Entries Column -->
+{% if object.author == request.user %}
+<div class="col-md-8">
+    <div class="card mb-4 mt-4">
+
+        <div class="card-header">
+            Update Blog Post
+        </div>
+        <div class="card-body">
+            <form method="post" action="{% url 'Article:update-post' object.slug  %}" enctype="multipart/form-data">
+                {% csrf_token %} {{ form.as_p }}
+                <button type="submit" class="btn btn-success">Update Entry</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+<div>
+    <a href="{% url 'users:login' %}">
+        <h4>Sorry {{ user }}, you can't edit this post!!! Please Login with the correct account</h4>
+    </a>
+    <p><br></p>
+</div>
+
+{% endif %} {% endblock content %}
